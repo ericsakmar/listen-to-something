@@ -15,9 +15,14 @@ const IndexPage = ({ data }) => {
 
   const tags = Array.from(tagSet);
 
-  const localRawTags = localStorage ? localStorage.getItem("tags") : null;
-  const initialTags = localRawTags === null ? tags : JSON.parse(localRawTags);
-  const [selectedTags, setSelectedTags] = React.useState(initialTags);
+  const [selectedTags, setSelectedTags] = React.useState(tags);
+
+  useEffect(() => {
+    const rawTags = localStorage.getItem("tags");
+    if (rawTags) {
+      setSelectedTags(JSON.parse(rawTags));
+    }
+  }, []);
 
   const toggle = (tag) => () => {
     const newTags = selectedTags.includes(tag)
