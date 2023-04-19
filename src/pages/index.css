@@ -6,6 +6,12 @@ body {
     rgba(254, 251, 251, 1) 0%,
     rgba(253, 243, 244, 1) 100%
   );
+  font-family: -apple-system, Roboto, sans-serif, serif;
+  padding: 16px;
+}
+
+h1 {
+  font-size: 48px;
 }
 
 button {
@@ -23,4 +29,16 @@ a {
 
 a:visited {
   border: 2px solid lightgray;
+}
+
+@media only screen and (min-width: 600px) {
+  h1 {
+    font-size: 96px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  body {
+    padding: 96px;
+  }
 }

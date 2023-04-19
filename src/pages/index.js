@@ -3,11 +3,6 @@ import { graphql } from "gatsby";
 import { format, parseISO } from "date-fns";
 import "./index.css";
 
-const pageStyles = {
-  padding: 96,
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-};
-
 const IndexPage = ({ data }) => {
   const links = data.allLink.nodes;
 
@@ -20,7 +15,7 @@ const IndexPage = ({ data }) => {
 
   const tags = Array.from(tagSet);
 
-  const localRawTags = localStorage.getItem("tags");
+  const localRawTags = localStorage ? localStorage.getItem("tags") : null;
   const initialTags = localRawTags === null ? tags : JSON.parse(localRawTags);
   const [selectedTags, setSelectedTags] = React.useState(initialTags);
 
@@ -38,10 +33,12 @@ const IndexPage = ({ data }) => {
   });
 
   return (
-    <main style={pageStyles}>
-      <h1 style={{ fontSize: 96 }}>listen to something.</h1>
+    <main>
+      <h1>listen to something.</h1>
 
-      <div style={{ display: "flex", gap: 8, marginBottom: 32 }}>
+      <div
+        style={{ display: "flex", gap: 8, marginBottom: 32, flexWrap: "wrap" }}
+      >
         {tags.map((t) => (
           <button
             key={t}
