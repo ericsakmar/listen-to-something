@@ -13,6 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.9"
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "node-fetch": "^2.6.9",
+    "rss-parser": "^3.13.0"
   }
 }

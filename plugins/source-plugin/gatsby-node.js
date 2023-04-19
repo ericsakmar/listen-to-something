@@ -1,6 +1,8 @@
-const hacksaw = require("./feeds/hacksaw");
-
-exports.onPreInit = () => console.log("Loaded source plugin");
+const bandcamp = require("./feeds/bandcamp");
+const cruelnoise = require("./feeds/cruelnoise");
+const dltsgdom = require("./feeds/dltsgdom");
+// const hacksaw = require("./feeds/hacksaw");
+const vikings = require("./feeds/vikingschoice");
 
 const NODE_TYPE = "link";
 
@@ -16,7 +18,7 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
 
-  const feeds = [hacksaw];
+  const feeds = [bandcamp, cruelnoise, dltsgdom, /* hacksaw, */ vikings];
 
   const results = await Promise.all(feeds.map((s) => getLinks(s)));
 

@@ -18,12 +18,10 @@ exports.getLinks = async () => {
     },
   ];
 
-  // console.log(data, undefined, 2);
-
   const links = data.map((l) => ({
     title: l.name,
     url: `https://bndcmpr.co/${l.uniqid}`,
-    timestamp: l.timestamp,
+    timestamp: new Date(l.timestamp),
     tags: ["bndcmpr", "playlist"],
   }));
 
