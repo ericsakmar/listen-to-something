@@ -17,7 +17,7 @@ const IndexPage = ({ data }) => {
 
   const [selectedTags, setSelectedTags] = React.useState(tags);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const rawTags = localStorage.getItem("tags");
     if (rawTags) {
       setSelectedTags(JSON.parse(rawTags));
