@@ -18,6 +18,10 @@
     "gatsby": "^5.9.0",
     "gatsby-plugin-manifest": "^5.9.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "date-fns": "^2.29.3",
+    "date-fns-tz": "^2.0.0",
+    "node-fetch": "^2.6.9",
+    "rss-parser": "^3.13.0"
   }
 }
