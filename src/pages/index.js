@@ -13,7 +13,7 @@ const IndexPage = ({ data }) => {
       return tags;
     }, new Set());
 
-  const tags = Array.from(tagSet);
+  const tags = Array.from(tagSet).slice().sort();
 
   const [selectedTags, setSelectedTags] = React.useState(tags);
 
@@ -34,7 +34,7 @@ const IndexPage = ({ data }) => {
   };
 
   const filtered = links.filter((l) => {
-    return l.tags.every((t) => selectedTags.includes(t));
+    return l.tags.some((t) => selectedTags.includes(t));
   });
 
   return (
