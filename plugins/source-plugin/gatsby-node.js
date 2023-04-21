@@ -4,6 +4,7 @@ const dltsgdom = require("./feeds/dltsgdom");
 // const hacksaw = require("./feeds/hacksaw");
 const vikings = require("./feeds/vikingschoice");
 const pghmusictracker = require("./feeds/pghmusictracker");
+const feckingbahamas = require("./feeds/feckingbahamas");
 
 const NODE_TYPE = "link";
 
@@ -19,7 +20,8 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
 
-  const feeds = [bandcamp, cruelnoise, dltsgdom, vikings, pghmusictracker];
+  // const feeds = [bandcamp, cruelnoise, dltsgdom, vikings, pghmusictracker];
+  const feeds = [feckingbahamas];
 
   const results = await Promise.all(feeds.map((s) => getLinks(s)));
 
