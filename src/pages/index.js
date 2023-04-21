@@ -37,6 +37,8 @@ const IndexPage = ({ data }) => {
     return l.tags.some((t) => selectedTags.includes(t));
   });
 
+  const surprise = filtered[Math.floor(Math.random() * filtered.length)];
+
   return (
     <main>
       <h1>listen to something.</h1>
@@ -61,10 +63,23 @@ const IndexPage = ({ data }) => {
         ))}
       </div>
 
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
-        {filtered.map((l) => (
-          <div key={l.url}>
-            <a href={l.url}>
+      {filtered.length === 0 ? (
+        <p>there's nothing here!</p>
+      ) : (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+          <a
+            style={{
+              backgroundColor: "lightgoldenrodyellow",
+              border: "4px dotted gold",
+            }}
+            href={surprise.url}
+          >
+            <h2 style={{ margin: 0 }}>Surprise Me!</h2>
+            <div>go to a random selection from this list</div>
+          </a>
+
+          {filtered.map((l) => (
+            <a key={l.url} href={l.url}>
               <h2 style={{ margin: 0 }}>{l.title}</h2>
 
               <div style={{ textTransform: "lowercase" }}>
@@ -75,16 +90,16 @@ const IndexPage = ({ data }) => {
                 {format(parseISO(l.timestamp), "E, LLL d yyyy")}
               </div>
             </a>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 };
 
 export default IndexPage;
 
-export const Head = () => <title>Home Page</title>;
+export const Head = () => <title>listen to something.</title>;
 
 export const query = graphql`
   query MyQuery {

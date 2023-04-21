@@ -10,7 +10,7 @@ exports.getLinks = async () => {
     title: i.title,
     url: i.link,
     timestamp: new Date(i.isoDate),
-    tags: ["bored in pittsburgh", "daily yinz", "blog"],
+    tags: ["bored in pittsburgh", "daily yinz", "blog", "pittsburgh"],
   }));
 
   return links;
