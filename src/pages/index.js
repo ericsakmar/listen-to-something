@@ -9,7 +9,7 @@ const IndexPage = ({ data }) => {
   const tagSet = links
     .flatMap((l) => l.tags)
     .reduce((tags, tag) => {
-      tags.add(tag);
+      tags.add(tag.toLowerCase());
       return tags;
     }, new Set());
 
@@ -52,6 +52,7 @@ const IndexPage = ({ data }) => {
               color: selectedTags.includes(t) ? "white" : "black",
               padding: "2px 4px",
               border: "2px solid black",
+              cursor: "pointer",
             }}
             onClick={toggle(t)}
           >
