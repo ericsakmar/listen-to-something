@@ -1,4 +1,5 @@
 const bandcamp = require("./feeds/bandcamp");
+const bandcampdaily = require("./feeds/bandcampdaily");
 const boredinpittsburgh = require("./feeds/boredinpittsburgh");
 const cruelnoise = require("./feeds/cruelnoise");
 const dltsgdom = require("./feeds/dltsgdom");
@@ -9,8 +10,13 @@ const vikings = require("./feeds/vikingschoice");
 const NODE_TYPE = "link";
 
 const getLinks = async (feed) => {
-  const links = await feed.getLinks();
-  return links;
+  try {
+    const links = await feed.getLinks();
+    return links;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
 };
 
 exports.sourceNodes = async ({
@@ -22,6 +28,7 @@ exports.sourceNodes = async ({
 
   const feeds = [
     bandcamp,
+    bandcampdaily,
     boredinpittsburgh,
     cruelnoise,
     dltsgdom,

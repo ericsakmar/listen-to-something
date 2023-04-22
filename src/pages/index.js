@@ -3,6 +3,27 @@ import { graphql } from "gatsby";
 import { format, parseISO } from "date-fns";
 import "./index.css";
 
+const getAccentColor = (link) => {
+  const tags = link.tags.map((t) => t.toLowerCase());
+  if (tags.includes("bandcamp")) {
+    return "#477987";
+  }
+
+  if (tags.includes("bandcamp daily")) {
+    return "hsla(194, 48%, 50%, 1)";
+  }
+
+  if (tags.includes("pittsburgh")) {
+    return "gold";
+  }
+
+  if (tags.includes("fecking bahamas")) {
+    return "#333";
+  }
+
+  return "purple";
+};
+
 const IndexPage = ({ data }) => {
   const links = data.allLink.nodes;
 
@@ -33,9 +54,12 @@ const IndexPage = ({ data }) => {
     localStorage.setItem("tags", JSON.stringify(newTags));
   };
 
-  const filtered = links.filter((l) => {
-    return l.tags.some((t) => selectedTags.includes(t));
-  });
+  const filtered = links
+    .filter((l) => l.tags.some((t) => selectedTags.includes(t.toLowerCase())))
+    .map((l) => ({
+      ...l,
+      timestamp: format(parseISO(l.timestamp), "E, LLL d"),
+    }));
 
   const surprise = filtered[Math.floor(Math.random() * filtered.length)];
 
@@ -50,10 +74,10 @@ const IndexPage = ({ data }) => {
           <button
             key={t}
             style={{
-              backgroundColor: selectedTags.includes(t) ? "black" : "white",
-              color: selectedTags.includes(t) ? "white" : "black",
+              backgroundColor: selectedTags.includes(t) ? "#333" : "white",
+              color: selectedTags.includes(t) ? "white" : "#111",
               padding: "2px 4px",
-              border: "2px solid black",
+              border: "2px solid #333",
               cursor: "pointer",
             }}
             onClick={toggle(t)}
@@ -66,7 +90,14 @@ const IndexPage = ({ data }) => {
       {filtered.length === 0 ? (
         <p>there's nothing here!</p>
       ) : (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            marginBottom: 32,
+          }}
+        >
           <a
             style={{
               backgroundColor: "lightgoldenrodyellow",
@@ -77,17 +108,23 @@ const IndexPage = ({ data }) => {
             <h2 style={{ margin: 0 }}>Surprise Me!</h2>
             <div>go to a random selection from this list</div>
           </a>
-
           {filtered.map((l) => (
-            <a key={l.url} href={l.url}>
+            <a
+              key={l.url}
+              href={l.url}
+              style={{
+                border: "4px solid silver",
+                boxShadow: `4px 4px 0px 0px ${getAccentColor(l)}`,
+              }}
+            >
               <h2 style={{ margin: 0 }}>{l.title}</h2>
 
-              <div style={{ textTransform: "lowercase" }}>
+              <div style={{ textTransform: "lowercase", color: "#333" }}>
                 {l.tags.join(", ")}
               </div>
 
-              <div style={{ fontStyle: "italic" }}>
-                {format(parseISO(l.timestamp), "E, LLL d yyyy")}
+              <div style={{ fontStyle: "italic", color: "#333" }}>
+                {l.timestamp}
               </div>
             </a>
           ))}
@@ -103,7 +140,7 @@ export const Head = () => <title>listen to something.</title>;
 
 export const query = graphql`
   query MyQuery {
-    allLink(sort: { timestamp: DESC }, limit: 100) {
+    allLink(sort: { timestamp: DESC }, limit: 50) {
       nodes {
         timestamp
         title

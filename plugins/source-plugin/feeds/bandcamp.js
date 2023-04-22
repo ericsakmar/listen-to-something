@@ -20,7 +20,7 @@ exports.getLinks = async () => {
     title: d.subtitle,
     url: `https://bandcamp.com/?show=${d.id}`,
     timestamp: parseDate(d.date),
-    tags: [d.title, "bandcamp", "show"],
+    tags: ["bandcamp", d.title, "show"],
   }));
 
   return links;
