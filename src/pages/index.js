@@ -27,6 +27,7 @@ const getAccentColor = (link) => {
 const IndexPage = ({ data }) => {
   const links = data.allLink.nodes;
 
+  // useTags hook?
   const tagSet = links
     .flatMap((l) => l.tags)
     .reduce((tags, tag) => {
@@ -108,6 +109,7 @@ const IndexPage = ({ data }) => {
             <h2 style={{ margin: 0 }}>Surprise Me!</h2>
             <div>go to a random selection from this list</div>
           </a>
+
           {filtered.map((l) => (
             <a
               key={l.url}
@@ -123,7 +125,13 @@ const IndexPage = ({ data }) => {
                 {l.tags.join(", ")}
               </div>
 
-              <div style={{ fontStyle: "italic", color: "#333" }}>
+              <div
+                style={{
+                  fontStyle: "italic",
+                  color: "#333",
+                  textTransform: "lowercase",
+                }}
+              >
                 {l.timestamp}
               </div>
             </a>
@@ -136,7 +144,27 @@ const IndexPage = ({ data }) => {
 
 export default IndexPage;
 
-export const Head = () => <title>listen to something.</title>;
+export const Head = () => (
+  <>
+    <title>listen to something.</title>
+
+    <meta name="description" content="a collection of music feeds." />
+    <meta property="og:title" content="listen to something." />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="a collection of music feeds." />
+    <meta
+      property="og:url"
+      content="https://listentosomething.ericsakmar.com"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </>
+);
 
 export const query = graphql`
   query MyQuery {

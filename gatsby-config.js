@@ -3,16 +3,16 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Listen To Something`,
-    siteUrl: `https://www.yourdomain.tld`,
+    title: `listen To something.`,
+    siteUrl: `https://listentosomething.ericsakmar.com`,
   },
   plugins: [
-    {
-      resolve: "gatsby-plugin-manifest",
-      options: {
-        icon: "src/images/icon.png",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-manifest",
+    //   options: {
+    //     icon: "src/images/icon.png",
+    //   },
+    // },
     "source-plugin",
   ],
 };
