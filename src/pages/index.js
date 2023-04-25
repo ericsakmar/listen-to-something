@@ -184,7 +184,7 @@ export const Head = () => (
 
 export const query = graphql`
   query MyQuery {
-    allLink(sort: { timestamp: DESC }, limit: 50) {
+    allLink(sort: { timestamp: DESC }, limit: 100) {
       nodes {
         timestamp
         title
