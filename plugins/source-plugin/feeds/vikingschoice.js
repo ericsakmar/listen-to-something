@@ -9,12 +9,14 @@ exports.getLinks = async () => {
 
   const data = await res.json();
 
-  const links = data.map((l) => ({
-    title: l.name,
-    url: `https://bndcmpr.co/${l.uniqid}`,
-    timestamp: new Date(l.timestamp),
-    tags: ["viking's choice", "bndcmpr", "playlist"],
-  }));
+  const links = data
+    .filter((l) => l.name.startsWith(`Viking's`)) // seems like shows that don't start with Viking's arent actually ready yet
+    .map((l) => ({
+      title: l.name,
+      url: `https://bndcmpr.co/${l.uniqid}`,
+      timestamp: new Date(l.timestamp),
+      tags: ["viking's choice", "bndcmpr", "playlist"],
+    }));
 
   return links;
 };
