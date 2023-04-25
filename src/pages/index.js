@@ -55,6 +55,16 @@ const IndexPage = ({ data }) => {
     localStorage.setItem("tags", JSON.stringify(newTags));
   };
 
+  const handleAllTags = () => {
+    setSelectedTags(tags);
+    localStorage.removeItem("tags");
+  };
+
+  const handleNoTags = () => {
+    setSelectedTags([]);
+    localStorage.setItem("tags", JSON.stringify([]));
+  };
+
   const filtered = links
     .filter((l) => l.tags.some((t) => selectedTags.includes(t.toLowerCase())))
     .map((l) => ({
@@ -77,15 +87,21 @@ const IndexPage = ({ data }) => {
             style={{
               backgroundColor: selectedTags.includes(t) ? "#333" : "white",
               color: selectedTags.includes(t) ? "white" : "#111",
-              padding: "2px 4px",
-              border: "2px solid #333",
-              cursor: "pointer",
             }}
+            className="tag"
             onClick={toggle(t)}
           >
             {t}
           </button>
         ))}
+
+        <button className="tag tag-action" onClick={handleAllTags}>
+          all
+        </button>
+
+        <button className="tag tag-action" onClick={handleNoTags}>
+          none
+        </button>
       </div>
 
       {filtered.length === 0 ? (
