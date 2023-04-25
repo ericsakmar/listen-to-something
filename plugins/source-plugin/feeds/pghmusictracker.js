@@ -61,15 +61,21 @@ const getLastUpdated = (tracks) => {
 };
 
 exports.getLinks = async () => {
-  const token = await getToken();
-  const playlists = await getPlaylists(token);
+  try {
+    const token = await getToken();
+    const playlists = await getPlaylists(token);
 
-  const links = playlists.map((p) => ({
-    title: p.name,
-    url: p.external_urls.spotify,
-    timestamp: getLastUpdated(p.tracks.items),
-    tags: ["pgh local music tracker", "spotify", "playlist", "pittsburgh"],
-  }));
+    const links = playlists.map((p) => ({
+      title: p.name,
+      url: p.external_urls.spotify,
+      timestamp: getLastUpdated(p.tracks.items),
+      tags: ["pgh local music tracker", "spotify", "playlist", "pittsburgh"],
+    }));
 
-  return links;
+    return links;
+  } catch (e) {
+    console.log("something didnt work for spotify");
+    console.log(e);
+    return [];
+  }
 };
