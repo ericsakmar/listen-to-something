@@ -8,14 +8,27 @@ const pghmusictracker = require("./feeds/pghmusictracker");
 const vikings = require("./feeds/vikingschoice");
 
 const NODE_TYPE = "link";
+const MAX_RETRIES = 3;
 
-const getLinks = async (feed) => {
+const getLinks = async (feed, retries = 0) => {
+  if (retries >= MAX_RETRIES) {
+    console.warn(`max retries exceeded for ${feed.name}`);
+    return [];
+  }
+
   try {
     const links = await feed.getLinks();
+
+    if (links.length === 0) {
+      console.warn(`no links found for ${feed.name}`);
+    }
+
     return links;
-  } catch (e) {
-    console.log(e);
-    return [];
+  } catch (error) {
+    console.error(error);
+
+    const retry = await getLinks(feed, retries + 1);
+    return retry;
   }
 };
 

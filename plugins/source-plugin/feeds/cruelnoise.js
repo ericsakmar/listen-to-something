@@ -15,3 +15,5 @@ exports.getLinks = async () => {
 
   return links;
 };
+
+exports.name = "cruel noise";

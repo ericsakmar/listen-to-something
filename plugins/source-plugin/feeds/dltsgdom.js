@@ -18,3 +18,5 @@ exports.getLinks = async () => {
 
   return links;
 };
+
+exports.name = "dltsgdom";

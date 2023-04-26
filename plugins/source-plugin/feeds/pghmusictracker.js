@@ -73,3 +73,5 @@ exports.getLinks = async () => {
 
   return links;
 };
+
+exports.name = "pgh local music tracker";

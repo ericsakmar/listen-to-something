@@ -20,3 +20,5 @@ exports.getLinks = async () => {
 
   return links;
 };
+
+exports.name = "viking's choice";

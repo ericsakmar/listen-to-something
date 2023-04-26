@@ -25,3 +25,5 @@ exports.getLinks = async () => {
 
   return links;
 };
+
+exports.name = "bandcamp shows";
