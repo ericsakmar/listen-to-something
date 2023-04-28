@@ -44,6 +44,10 @@ a:focus {
   outline: none;
 }
 
+a:visited {
+  color: #696969;
+}
+
 .tag {
   padding: 2px 4px;
   cursor: pointer;
