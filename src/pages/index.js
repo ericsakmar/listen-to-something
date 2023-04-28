@@ -117,6 +117,7 @@ const IndexPage = ({ data }) => {
         >
           <a
             style={{
+              "--accent-color": "goldenrod",
               backgroundColor: "lightgoldenrodyellow",
               border: "4px dotted gold",
             }}
@@ -131,8 +132,8 @@ const IndexPage = ({ data }) => {
               key={l.url}
               href={l.url}
               style={{
+                "--accent-color": getAccentColor(l),
                 border: "4px solid silver",
-                boxShadow: `4px 4px 0px 0px ${getAccentColor(l)}`,
               }}
             >
               <h2 style={{ margin: 0 }}>{l.title}</h2>
