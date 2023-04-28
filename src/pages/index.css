@@ -26,7 +26,16 @@ button:focus {
   outline: none;
 }
 
-a {
+.skip-link {
+  display: inline-block;
+  transform: translate(-500px, 0);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.card {
   text-decoration: none;
   color: black;
   display: block;
@@ -37,8 +46,8 @@ a {
   box-shadow: 4px 4px 0px 0px var(--accent-color);
 }
 
-a:hover,
-a:focus {
+.card:hover,
+.card:focus {
   transform: translate(-4px, -4px);
   box-shadow: 8px 8px 0px 0px var(--accent-color) !important;
   outline: none;
@@ -65,7 +74,7 @@ a:visited {
     font-size: 96px;
   }
 
-  a {
+  .card {
     flex-basis: auto;
   }
 }

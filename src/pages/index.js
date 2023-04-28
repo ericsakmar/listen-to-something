@@ -26,6 +26,7 @@ const getAccentColor = (link) => {
 
 const IndexPage = ({ data }) => {
   const links = data.allLink.nodes;
+  const firstRef = React.useRef();
 
   // useTags hook?
   const tagSet = links
@@ -45,6 +46,10 @@ const IndexPage = ({ data }) => {
       setSelectedTags(JSON.parse(rawTags));
     }
   }, []);
+
+  const handleSkip = () => {
+    firstRef.current.focus();
+  };
 
   const toggle = (tag) => () => {
     const newTags = selectedTags.includes(tag)
@@ -76,6 +81,10 @@ const IndexPage = ({ data }) => {
 
   return (
     <main>
+      <button onClick={handleSkip} className="skip-link">
+        skip to content
+      </button>
+
       <h1>listen to something.</h1>
 
       <div
@@ -122,19 +131,22 @@ const IndexPage = ({ data }) => {
               border: "4px dotted gold",
             }}
             href={surprise.url}
+            className="card"
           >
             <h2 style={{ margin: 0 }}>Surprise Me!</h2>
             <div>go to a random selection from this list</div>
           </a>
 
-          {filtered.map((l) => (
+          {filtered.map((l, i) => (
             <a
               key={l.url}
               href={l.url}
+              ref={i === 0 ? firstRef : undefined}
               style={{
                 "--accent-color": getAccentColor(l),
                 border: "4px solid silver",
               }}
+              className="card"
             >
               <h2 style={{ margin: 0 }}>{l.title}</h2>
 
