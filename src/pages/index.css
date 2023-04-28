@@ -14,12 +14,6 @@ h1 {
   font-size: 48px;
 }
 
-h2 {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
 button {
   text-transform: lowercase;
   transition: all 100ms ease-in-out;
@@ -55,7 +49,6 @@ button:active {
   flex-basis: 100%;
   transition: all 100ms ease-in-out;
   box-shadow: 4px 4px 0px 0px var(--accent-color);
-  max-width: 700px;
 }
 
 .card:visited {
@@ -94,6 +87,18 @@ button:active {
 
   .card {
     flex-basis: auto;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  h2 {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .card {
+    max-width: 700px;
   }
 }
 
