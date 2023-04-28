@@ -147,6 +147,7 @@ const IndexPage = ({ data }) => {
                 border: "4px solid silver",
               }}
               className="card"
+              title={l.title}
             >
               <h2 style={{ margin: 0 }}>{l.title}</h2>
 

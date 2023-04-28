@@ -14,6 +14,12 @@ h1 {
   font-size: 48px;
 }
 
+h2 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 button {
   text-transform: lowercase;
   transition: all 100ms ease-in-out;
@@ -24,6 +30,11 @@ button:focus {
   transform: translate(-2px, -2px);
   box-shadow: 4px 4px 0px 0px silver;
   outline: none;
+}
+
+button:active {
+  transform: translate(-1px, -1px);
+  box-shadow: 2px 2px 0px 0px silver;
 }
 
 .skip-link {
@@ -44,6 +55,11 @@ button:focus {
   flex-basis: 100%;
   transition: all 100ms ease-in-out;
   box-shadow: 4px 4px 0px 0px var(--accent-color);
+  max-width: 700px;
+}
+
+.card:visited {
+  color: #696969;
 }
 
 .card:hover,
@@ -51,10 +67,12 @@ button:focus {
   transform: translate(-4px, -4px);
   box-shadow: 8px 8px 0px 0px var(--accent-color) !important;
   outline: none;
+  color: unset;
 }
 
-a:visited {
-  color: #696969;
+.card:active {
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0px 0px var(--accent-color) !important;
 }
 
 .tag {
