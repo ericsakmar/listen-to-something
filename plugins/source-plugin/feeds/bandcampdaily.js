@@ -32,7 +32,7 @@ exports.getLinks = async () => {
         title,
         url: `https://daily.bandcamp.com${link}`,
         timestamp: date,
-        tags: ["bandcamp daily", franchise],
+        tags: ["bandcamp", "bandcamp daily", franchise],
       };
     })
     .filter(
