@@ -32,7 +32,7 @@ const getPlaylists = async (token) => {
   const playlistData = await playlistsRes.json();
 
   const playlists = playlistData.items.filter((p) =>
-    p.name.toLowerCase().includes("pgh releases")
+    p.name.toLowerCase().includes("releases")
   );
 
   const detailRequests = playlists.map((p) =>
@@ -53,9 +53,9 @@ const getPlaylists = async (token) => {
 const getLastUpdated = (tracks) => {
   const lastAdded = tracks
     .map((track) => ({ ...track, added_at: dateFns.parseISO(track.added_at) }))
-    .reduce((last, track) => {
-      return dateFns.isBefore(track.added_at, last.added_at) ? track : last;
-    });
+    .reduce((last, track) =>
+      dateFns.isAfter(track.added_at, last.added_at) ? track : last
+    );
 
   return lastAdded.added_at;
 };
