@@ -36,7 +36,7 @@ exports.getLinks = async () => {
       };
     })
     .filter(
-      (l) => l.tags.includes("ALBUM OF THE DAY") || l.tags.includes("LISTS")
+      (l) => l.tags.some(t => t ===  "ALBUM OF THE DAY" || t === "LISTS" || t.startsWith("BEST"))
     );
 
   return links;
