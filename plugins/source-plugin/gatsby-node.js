@@ -1,10 +1,7 @@
 const bandcamp = require("./feeds/bandcamp");
 const bandcampdaily = require("./feeds/bandcampdaily");
-const boredinpittsburgh = require("./feeds/boredinpittsburgh");
 const cruelnoise = require("./feeds/cruelnoise");
-const dltsgdom = require("./feeds/dltsgdom");
 const feckingbahamas = require("./feeds/feckingbahamas");
-const pghmusictracker = require("./feeds/pghmusictracker");
 const vikings = require("./feeds/vikingschoice");
 
 const NODE_TYPE = "link";
@@ -39,16 +36,7 @@ exports.sourceNodes = async ({
 }) => {
   const { createNode } = actions;
 
-  const feeds = [
-    bandcamp,
-    bandcampdaily,
-    boredinpittsburgh,
-    cruelnoise,
-    dltsgdom,
-    feckingbahamas,
-    pghmusictracker,
-    vikings,
-  ];
+  const feeds = [bandcamp, bandcampdaily, cruelnoise, feckingbahamas, vikings];
 
   const results = await Promise.all(feeds.map((s) => getLinks(s)));
 
@@ -65,6 +53,6 @@ exports.sourceNodes = async ({
         content: JSON.stringify(link),
         contentDigest: createContentDigest(link),
       },
-    })
+    }),
   );
 };
