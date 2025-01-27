@@ -5,7 +5,12 @@ body {
     rgba(254, 251, 251, 1) 0%,
     rgba(253, 243, 244, 1) 100%
   );
-  font-family: "Montserrat", -apple-system, Roboto, sans-serif, serif;
+  font-family:
+    "Nunito",
+    -apple-system,
+    Roboto,
+    sans-serif,
+    serif;
   padding: 16px;
   font-variant-numeric: lining-nums;
 }
@@ -71,7 +76,7 @@ button:active {
 .tag {
   padding: 2px 4px;
   cursor: pointer;
-  border: 2px solid #333;
+  border: 2px solid #000;
 }
 
 .tag-action {

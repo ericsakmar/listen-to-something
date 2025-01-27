@@ -6,22 +6,22 @@ import "./index.css";
 const getAccentColor = (link) => {
   const tags = link.tags.map((t) => t.toLowerCase());
   if (tags.includes("bandcamp")) {
-    return "#477987";
+    return "#1DA1B3"; // Bright turquoise
   }
 
   if (tags.includes("bandcamp daily")) {
-    return "hsla(194, 48%, 50%, 1)";
+    return "#FF6B6B"; // Coral pink
   }
 
   if (tags.includes("pittsburgh")) {
-    return "gold";
+    return "#FFD93D"; // Warm yellow
   }
 
   if (tags.includes("fecking bahamas")) {
     return "#333";
   }
 
-  return "purple";
+  return "#9B5DE5"; // Bright purple (default)
 };
 
 const IndexPage = ({ data }) => {
@@ -77,8 +77,6 @@ const IndexPage = ({ data }) => {
       timestamp: format(parseISO(l.timestamp), "E, LLL d"),
     }));
 
-  const surprise = filtered[Math.floor(Math.random() * filtered.length)];
-
   return (
     <main>
       <button onClick={handleSkip} className="skip-link">
@@ -124,19 +122,6 @@ const IndexPage = ({ data }) => {
             marginBottom: 32,
           }}
         >
-          <a
-            style={{
-              "--accent-color": "goldenrod",
-              backgroundColor: "lightgoldenrodyellow",
-              border: "4px dotted gold",
-            }}
-            href={surprise.url}
-            className="card"
-          >
-            <h2 style={{ margin: 0 }}>Surprise Me!</h2>
-            <div>go to a random selection from this list</div>
-          </a>
-
           {filtered.map((l, i) => (
             <a
               key={l.url}
@@ -144,7 +129,7 @@ const IndexPage = ({ data }) => {
               ref={i === 0 ? firstRef : undefined}
               style={{
                 "--accent-color": getAccentColor(l),
-                border: "4px solid silver",
+                border: "4px solid #534b4f",
               }}
               className="card"
               title={l.title}
@@ -190,7 +175,7 @@ export const Head = () => (
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
       rel="stylesheet"
     />
   </>
